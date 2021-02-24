@@ -9,7 +9,7 @@ builtins.bot = bot
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
-
+hi
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} has entered the Bounce House!")
