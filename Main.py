@@ -19,6 +19,19 @@ Whenever a user types "!help", a list of all command descriptions will show.
 async def model_command(ctx):
     await ctx.channel.send("placeholder.")
 
+@bot.command()
+async def load(ctx, extension):
+    bot.load_extension(f'cogs.{extension}')
+
+@bot.command()
+async def unload(ctx, extension):
+    bot.unload_extension(f'cogs.{extension}')
+
+@bot.command()
+async def reload(ctx, extension):
+    bot.unload_extension(f'cogs.{extension}')
+    bot.load_extension(f'cogs.{extension}')
+
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} has entered the Bounce House!")
