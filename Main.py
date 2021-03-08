@@ -10,27 +10,29 @@ builtins.bot = bot
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
-"""
-The below function is a model for how we should define all command functions. Use the "help" decorator and put a description of the command there.
-Whenever a user types "!help", a list of all command descriptions will show.
-~Conroy
-"""
-@bot.command(help = "This command is an example of how to contribute information to the \"!help\" command.")
-async def model_command(ctx):
-    await ctx.channel.send("placeholder.")
-
-@bot.command()
+@bot.command(help = "This command will load a cog. Type the cog's name after the command.")
 async def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
 
-@bot.command()
+@bot.command(help = "This command will unload a cog. Type the cog's name after the command.")
 async def unload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}')
 
-@bot.command()
+@bot.command(help = "This command will reload a cog. Type the cog's name after the command.")
 async def reload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}')
     bot.load_extension(f'cogs.{extension}')
+
+#this for loop will load all cogs as soon as the bot starts running
+#loop through all files in the cogs folder
+for filename in os.listdir("./cogs"):
+
+    #check for a python file
+    if filename.endswith(".py"):
+
+        #load the python file as a cog (be sure to splice the file name in order to not inlcude ".py")
+        bot.load_extension("cogs." + filename[:-3])
+
 
 @bot.event
 async def on_ready():
