@@ -52,7 +52,7 @@ class tasks(commands.Cog):
       
 
       else:
-         await ctx.channel.send("There's something wrong.\n Please make sure that you are deleting a task that exists. \n Please try again using $del_task <integer>")
+         await ctx.channel.send("There's something wrong.\n Please make sure that you are deleting a task that exists. \n Please try again using !del_task <integer>")
 
 def setup(bot):
     bot.add_cog(tasks(bot))
