@@ -10,6 +10,11 @@ builtins.bot = bot
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
 
+# Go Knights Command
+@bot.command(help = "Show some school spirit!", aliases = ["GoKnights!"])
+async def GoKnights(ctx):
+    await ctx.channel.send("Charge On!")
+
 @bot.command(help = "This command will load a cog. Type the cog's name after the command.")
 async def load(ctx, extension):
     bot.load_extension(f'cogs.{extension}')
