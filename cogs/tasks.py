@@ -10,12 +10,12 @@ class tasks(commands.Cog):
         self.bot = bot
         self.last_member = None
 
-    @commands.command(help="Adds a Task")
-    async def add_task(self, ctx, arg1, arg2):
+    @commands.command(help="Adds a Task", aliases = ["addtask", 'addt'] )
+    async def add_task(self, ctx, arg1 = None, arg2 = None):
 
 
         if arg1 == None:
-            await ctx.send('Please redo command with the name of your task.')
+            await ctx.send('Please redo command with this format: !add_task "TaskTitle" "TaskDescription" (quotes included).')
             return 
         
         tasks = [arg1, arg2]
@@ -23,8 +23,23 @@ class tasks(commands.Cog):
         embedVar = discord.Embed(title="Your task has been added.", color=0x00ff00)
         embedVar.add_field(name= tasks[0], value=tasks[1], inline=False)
         await ctx.channel.send(embed=embedVar)
-    
-    @commands.command(help="Shows all of your tasks")
+
+    @commands.command(help="Adds a Task", aliases = ["edittask", 'editt'] )
+    async def edit_task(self, ctx, arg: int, arg1 = None, arg2 = None):
+
+
+        if arg1 == None:
+            await ctx.send('Please redo command with this format: !edit_task <integer> "TaskTitle" "TaskDescription" (quotes included).')
+            return 
+        
+        tasks = [arg1, arg2]
+        tasklist[arg-1] = tasks
+        embedVar = discord.Embed(title="Your task has been edited.", color=0x00ff00)
+        embedVar.add_field(name= tasks[0], value=tasks[1], inline=False)
+        await ctx.channel.send(embed=embedVar)
+
+
+    @commands.command(help="Shows all of your tasks", aliases = ["showtasks", "showt"])
     async def show_tasks(self, ctx):
 
       if len(tasklist) == 0:   
@@ -40,7 +55,51 @@ class tasks(commands.Cog):
 
       await ctx.channel.send(embed=embedVar)
 
-    @commands.command(help="Deletes a task")
+    @commands.command(help="Checks off a task", aliases = ["checktask", "checkt"])
+    async def check_task(self, ctx, arg: int):
+
+      if arg <= len(tasklist): 
+
+        if tasklist[arg-1][0][0] == "~":
+          await ctx.channel.send("This task has already been checked off.")
+          return
+
+        else: 
+          task = tasklist[(arg-1)]
+          tasklist[arg-1][0] = "~~"+task[0]+"~~"
+
+          if tasklist[arg-1][1] != None:
+            tasklist[arg-1][1] = "~~"+task[1]+"~~"
+          embedVar = discord.Embed(title="Your task has been checked off.", color=0x00ff00)
+          embedVar.add_field(name= task[0], value=task[1], inline=False)
+          await ctx.channel.send(embed=embedVar)     
+
+      else:
+        await ctx.channel.send("There's something wrong.\n Please make sure that you are checking off a task that exists. \n Please try again using !checkoff_task <integer>")
+      
+
+    @commands.command(help="Unchecks a task", aliases = ["unchecktask", "uncheckt"])
+    async def uncheck_task(self, ctx, arg: int):
+      
+      if arg <= len(tasklist): 
+        task = tasklist[(arg-1)]
+
+        if tasklist[arg-1][0][0] != "~":
+          await ctx.channel.send("This task hasn't been checked off.")
+        else:
+          tasklist[arg-1][0] = tasklist[arg-1][0][2:(len(tasklist[arg-1][0])-2)]
+          if tasklist[arg-1][1] != None:
+            tasklist[arg-1][1] = tasklist[arg-1][1][2:(len(tasklist[arg-1][1])-2)]  
+          
+          embedVar = discord.Embed(title="Your task has been unchecked.", color=0x00ff00)
+          embedVar.add_field(name= task[0], value=task[1], inline=False)
+          await ctx.channel.send(embed=embedVar)     
+
+      else:
+        await ctx.channel.send("There's something wrong.\n Please make sure that you are checking off a task that exists. \n Please try again using !checkoff_task <integer>")
+      
+
+    @commands.command(help="Deletes a task", aliases = ["deltask", "delt", "deletet", "deletetask"])
     async def del_task(self, ctx, arg:int):
 
       if arg <= len(tasklist): 
