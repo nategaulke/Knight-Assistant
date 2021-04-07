@@ -50,6 +50,17 @@ class Calc(commands.Cog):
             response = "Sorry, I do not recognize that oeprator yet."
         
         await channel.send(response)
+    
+    @commands.command(help = "This command will ")
+    async def calc_tip(self, ctx, amount):
+
+        channel = ctx.message.channel 
+
+        standard_tip = amount * .20
+
+        response = f"You should give a ${standard_tip} tip"
+
+        await channel.send(response)
 
 #this function connects this cog (via the Calc class) to the bot object
 def setup(bot):

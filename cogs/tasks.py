@@ -4,13 +4,13 @@ from discord.ext import commands
 
 tasklist = []  
 
-class tasks(commands.Cog):
+class Tasks(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
         self.last_member = None
 
-    @commands.command(help="Adds a Task", aliases = ["addtask", 'addt'] )
+    @commands.command(help="Adds a task. Please type a title and description surrounded by quotes.", aliases = ["addtask", 'addt'] )
     async def add_task(self, ctx, arg1 = None, arg2 = None):
 
 
@@ -24,7 +24,7 @@ class tasks(commands.Cog):
         embedVar.add_field(name= tasks[0], value=tasks[1], inline=False)
         await ctx.channel.send(embed=embedVar)
 
-    @commands.command(help="Adds a Task", aliases = ["edittask", 'editt'] )
+    @commands.command(help="Edits a task. Specify it's number, aswell as a title and description in quotes.", aliases = ["edittask", 'editt'] )
     async def edit_task(self, ctx, arg: int, arg1 = None, arg2 = None):
 
 
@@ -39,7 +39,7 @@ class tasks(commands.Cog):
         await ctx.channel.send(embed=embedVar)
 
 
-    @commands.command(help="Shows all of your tasks", aliases = ["showtasks", "showt"])
+    @commands.command(help="Shows all of your tasks.", aliases = ["showtasks", "showt"])
     async def show_tasks(self, ctx):
 
       if len(tasklist) == 0:   
@@ -55,7 +55,7 @@ class tasks(commands.Cog):
 
       await ctx.channel.send(embed=embedVar)
 
-    @commands.command(help="Checks off a task", aliases = ["checktask", "checkt"])
+    @commands.command(help="Checks off a task. Specify a number.", aliases = ["checktask", "checkt"])
     async def check_task(self, ctx, arg: int):
 
       if arg <= len(tasklist): 
@@ -78,7 +78,7 @@ class tasks(commands.Cog):
         await ctx.channel.send("There's something wrong.\n Please make sure that you are checking off a task that exists. \n Please try again using !checkoff_task <integer>")
       
 
-    @commands.command(help="Unchecks a task", aliases = ["unchecktask", "uncheckt"])
+    @commands.command(help="Unchecks a task. Specify a number.", aliases = ["unchecktask", "uncheckt"])
     async def uncheck_task(self, ctx, arg: int):
       
       if arg <= len(tasklist): 
@@ -99,7 +99,7 @@ class tasks(commands.Cog):
         await ctx.channel.send("There's something wrong.\n Please make sure that you are checking off a task that exists. \n Please try again using !checkoff_task <integer>")
       
 
-    @commands.command(help="Deletes a task", aliases = ["deltask", "delt", "deletet", "deletetask"])
+    @commands.command(help="Deletes a task. Specify a number.", aliases = ["deltask", "delt", "deletet", "deletetask"])
     async def del_task(self, ctx, arg:int):
 
       if arg <= len(tasklist): 
@@ -114,4 +114,4 @@ class tasks(commands.Cog):
          await ctx.channel.send("There's something wrong.\n Please make sure that you are deleting a task that exists. \n Please try again using !del_task <integer>")
 
 def setup(bot):
-    bot.add_cog(tasks(bot))
+    bot.add_cog(Tasks(bot))
