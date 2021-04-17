@@ -12,7 +12,7 @@ class Weather(commands.Cog):
         self.bot = bot
 
 
-    @commands.command(help = "This command will show the current weather information for a specific city. Simply type the zip code after \"!weather\". Currently, this only works for US cities.")
+    @commands.command(help = "Shows the current weather information for a specific city. Simply type the zip code after \"!weather\". Currently, this only works for US cities.")
     async def weather(self, ctx, *, zip_code: str):
 
         weather_api_key = os.getenv('WEATHER_API_KEY')

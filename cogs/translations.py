@@ -13,7 +13,7 @@ class Translations(commands.Cog):
         self.bot = bot
 
     #*args is used to store a variable number of arguments
-    @commands.command(help = "This command will translate a message. Type the language or language code after the command followed by a message.")
+    @commands.command(help = "Translates a message. Type the language or language code after the command followed by a message.")
     async def translate(self, ctx, language, *args):
 
         channel = ctx.message.channel   
