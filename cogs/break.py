@@ -95,7 +95,7 @@ class Break(commands.Cog):
             8 : "Halloween (October 31st)",
             9 : "Halloween (October 31st)",
             10 : "Thanksgiving (the fourth Thursday in November)",
-            11 : "Christmas (December 12th)",
+            11 : "Christmas (December 25th)",
             12 : "New Years (January 1st)"       
         }
 
