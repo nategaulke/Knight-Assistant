@@ -13,7 +13,7 @@ class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(aliases=['addevent'], help = "Adds event to the server's calendar")
+    @commands.command(aliases=['addevent'], help = "Adds event to the server's calendar.")
     async def add_event(self, ctx, name = None, date = None, time = None):
         if ctx.author == bot.user:
             return
@@ -55,8 +55,8 @@ class Events(commands.Cog):
             embed.set_footer(text = ctx.author.display_name, icon_url = ctx.author.avatar_url)
             await ctx.send(embed=embed)
         return
-    
-    @commands.command(aliases=['events', 'calendar'], help = "Shows the events on the server's calendar")
+
+    @commands.command(aliases=['events', 'calendar'], help = "Shows the events on the server's calendar.")
     async def show_events(self, ctx):
         if ctx.author == bot.user:
             return
@@ -81,8 +81,8 @@ class Events(commands.Cog):
             embed.add_field(name = event["Name"], value = event["Time"].strftime('%B %d, %Y at %I:%M %p'), inline=False)
         await ctx.send(embed=embed)
         return
-    
-    @commands.command(aliases=['delevent', 'delete_event', 'delevents'], help = "Deletes an event with the given name or all events")
+
+    @commands.command(aliases=['delevent', 'delete_event', 'delevents'], help = "Deletes an event with the given name or all events.")
     async def del_event(self, ctx, name = None):
         if ctx.author == bot.user:
             return
