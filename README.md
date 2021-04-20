@@ -19,8 +19,8 @@ Knight Assistant is a Discord Bot written in python using the following technolo
 
 ## Features
 
-* :calendar: Events: Add  Show  Delete 
-* :white_check_mark: Tasks: Add  Show  Delete  Check-Off  Uncheck
+* :calendar: Events: `Add`  `Show`  `Delete` 
+* :white_check_mark: Tasks: `Add`  `Show`  `Delete`  `Check-Off`  `Uncheck`
 * :sun_behind_rain_cloud: Weather
 * :christmas_tree: Next UCF Break Finder
 * :heavy_division_sign: Calculator 
