@@ -11,7 +11,7 @@ We started the design process in February and decided to work on a Discord bot t
 Knight Assistant is a Discord Bot written in python using the following technologies: 
 
 * Discord.py
-* MongoDB/pymongo
+* MongoDB
 * googletrans 
 * Weather API
 * JSON Requests
