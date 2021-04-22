@@ -15,6 +15,7 @@ Knight Assistant is a Discord Bot written in python using the following technolo
 * googletrans 
 * Weather API
 * JSON Requests
+* Hosted on Heroku
 
 
 ## Features
