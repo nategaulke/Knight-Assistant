@@ -1,4 +1,5 @@
 .env
+.flake8
+*.pyc
 __pycache__
 .venv
-
